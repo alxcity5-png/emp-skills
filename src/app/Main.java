@@ -61,6 +61,10 @@ public class Main {
                     System.out.print("Enter license plate to exit: ");
                     String plate = sc.nextLine().trim().toUpperCase();
 
+                    System.out.print("Exit hour (0-23): ");
+                    int exitHour = sc.nextInt();
+                    sc.nextLine();
+
                     vehicle target = null;
 
                     for (vehicle v : lot) {
@@ -75,10 +79,15 @@ public class Main {
                                 "Vehicle " + plate + " is not currently parked.");
                     }
 
-                    System.out.println("Vehicle found: " + target);
+                    double fee = target.calculateFee(exitHour);
+
+                    lot.remove(target);
+                    exitLogs.addRecord(plate, fee);
+
+                    System.out.println("Exited. Fee charged: Rs. " + fee);
 
                 } else if (choice == 3) {
-                    // Occupancy and history report will be added later.
+                    // Occupancy and history report will be added next.
 
                 } else if (choice == 4) {
                     System.out.println("Thank you");
