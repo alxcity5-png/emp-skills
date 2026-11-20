@@ -87,7 +87,15 @@ public class Main {
                     System.out.println("Exited. Fee charged: Rs. " + fee);
 
                 } else if (choice == 3) {
-                    // Occupancy and history report will be added next.
+                    System.out.println("--- Occupancy Report ---");
+                    System.out.println("Occupied slots: "
+                            + lot.size() + " / " + MAX_SLOTS);
+
+                    for (vehicle v : lot) {
+                        System.out.println("Active: " + v);
+                    }
+
+                    // Exit history display will be added in the next commit.
 
                 } else if (choice == 4) {
                     System.out.println("Thank you");
