@@ -58,10 +58,27 @@ public class Main {
                             + lot.size() + "/" + MAX_SLOTS);
 
                 } else if (choice == 2) {
-                    // Exit functionality will be added in the next commit.
+                    System.out.print("Enter license plate to exit: ");
+                    String plate = sc.nextLine().trim().toUpperCase();
+
+                    vehicle target = null;
+
+                    for (vehicle v : lot) {
+                        if (v.getLicensePlate().equals(plate)) {
+                            target = v;
+                            break;
+                        }
+                    }
+
+                    if (target == null) {
+                        throw new VehicleNotFoundException(
+                                "Vehicle " + plate + " is not currently parked.");
+                    }
+
+                    System.out.println("Vehicle found: " + target);
 
                 } else if (choice == 3) {
-                    // Occupancy report will be added later.
+                    // Occupancy and history report will be added later.
 
                 } else if (choice == 4) {
                     System.out.println("Thank you");
@@ -71,7 +88,7 @@ public class Main {
                     System.out.println("Invalid option");
                 }
 
-            } catch (ParkingFullException e) {
+            } catch (ParkingFullException | VehicleNotFoundException e) {
                 System.out.println("ERROR: " + e.getMessage());
             }
         }
