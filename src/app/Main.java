@@ -1,4 +1,3 @@
-
 package app;
 
 import java.util.ArrayList;
@@ -48,14 +47,11 @@ public class Main {
                     int hour = sc.nextInt();
                     sc.nextLine();
 
-                    vehicle v = type.equals("bike")
-                            ? new bike(plate, hour)
-                            : new car(plate, hour);
+                    vehicle v = type.equals("bike") ? new bike(plate, hour) : new car(plate, hour);
 
                     lot.add(v);
 
-                    System.out.println("Parked. Current occupancy: "
-                            + lot.size() + "/" + MAX_SLOTS);
+                    System.out.println("Parked. Current occupancy: " + lot.size() + "/" + MAX_SLOTS);
 
                 } else if (choice == 2) {
                     System.out.print("Enter license plate to exit: ");
@@ -75,8 +71,7 @@ public class Main {
                     }
 
                     if (target == null) {
-                        throw new VehicleNotFoundException(
-                                "Vehicle " + plate + " is not currently parked.");
+                        throw new VehicleNotFoundException("Vehicle " + plate + " is not currently parked.");
                     }
 
                     double fee = target.calculateFee(exitHour);
@@ -88,14 +83,14 @@ public class Main {
 
                 } else if (choice == 3) {
                     System.out.println("--- Occupancy Report ---");
-                    System.out.println("Occupied slots: "
-                            + lot.size() + " / " + MAX_SLOTS);
+                    System.out.println("Occupied slots: " + lot.size() + " / " + MAX_SLOTS);
 
                     for (vehicle v : lot) {
                         System.out.println("Active: " + v);
                     }
 
-                    // Exit history display will be added in the next commit.
+                    System.out.println("--- Exit History (Linked List) ---");
+                    exitLogs.printLogs();
 
                 } else if (choice == 4) {
                     System.out.println("Thank you");
